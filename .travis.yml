@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+- '0.10'
+- '4.2'
+sudo: false
+before_install:
+- if [[ "$(npm --version)" =~ ^1\..+ ]]; then npm install -g npm@2; fi
+notifications:
+  email: false

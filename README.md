@@ -1,4 +1,7 @@
 # runnable-hostname
+
+[![Build Status](https://travis-ci.org/Runnable/hostname.svg?branch=master)](https://travis-ci.org/Runnable/hostname)
+
 util for generating an instance's elastic or direct hostname
 
 # Usage
