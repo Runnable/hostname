@@ -104,7 +104,7 @@ describe('hostname', function () {
         });
       });
       describe('isolation master', function() {
-        beforeEach(function (done) {npm
+        beforeEach(function (done) {
           ctx.opts.isolated = 'das3h343k12hj3g4';
           ctx.opts.isIsolationGroupMaster = true;
           ctx.opts.instanceName = ctx.opts.branch +'-'+ ctx.opts.instanceName;
