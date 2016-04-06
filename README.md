@@ -49,4 +49,78 @@ hostname.elastic({
   userContentDomain: 'runnableapp.com'
 });
 // instanceName-staging-ownerUsername.runnableapp.com
+
+// Isolated Master Instance
+
+hostname.direct({
+  shortHash: 'abcdef',
+  branch: 'branch',
+  instanceName: 'branch-instanceName',
+  ownerUsername: 'ownerUsername',
+  masterPod: false,
+  isolated: 'asd76sdasg2341324',
+  isIsolationGroupMaster: true,
+  userContentDomain: 'runnableapp.com'
+});
+// abcdef-instanceName-staging-ownerUsername.runnableapp.com
+hostname.elastic({
+  shortHash: 'abcdef',
+  branch: 'branch',
+  instanceName: 'branch-instanceName',
+  ownerUsername: 'ownerUsername',
+  masterPod: false,
+  isolated: 'asd76sdasg2341324',
+  isIsolationGroupMaster: true,
+  userContentDomain: 'runnableapp.com'
+});
+// instanceName-staging-ownerUsername.runnableapp.com           
+
+// Isolated Container (not master) Instance
+Master instance shortHash = '343gh1'
+
+hostname.direct({
+  shortHash: 'abcdef',
+  branch: 'branch',
+  instanceName: 'branch-instanceName',
+  ownerUsername: 'ownerUsername',
+  masterPod: false,
+  isolated: 'asd76sdasg2341324',
+  isIsolationGroupMaster: true,
+  userContentDomain: 'runnableapp.com'
+});
+// 343gh1--instanceName-staging-ownerUsername.runnableapp.com
+hostname.elastic({
+  shortHash: 'abcdef',
+  branch: 'branch',
+  instanceName: 'branch-instanceName',
+  ownerUsername: 'ownerUsername',
+  masterPod: false,
+  isolated: 'asd76sdasg2341324',
+  isIsolationGroupMaster: true,
+  userContentDomain: 'runnableapp.com'
+});
+// instanceName-staging-ownerUsername.runnableapp.com
+
+// Non-repo
+hostname.direct({
+  shortHash: 'abcdef',
+  instanceName: 'instanceName',
+  ownerUsername: 'ownerUsername',
+  masterPod: false,
+  isolated: 'asd76sdasg2341324',
+  isIsolationGroupMaster: true,
+  userContentDomain: 'runnableapp.com'
+});
+// 343gh1--instanceName-staging-ownerUsername.runnableapp.com
+hostname.elastic({
+  shortHash: 'abcdef',
+  instanceName: 'instanceName',
+  ownerUsername: 'ownerUsername',
+  masterPod: false,
+  isolated: 'asd76sdasg2341324',
+  isIsolationGroupMaster: true,
+  userContentDomain: 'runnableapp.com'
+});
+// instanceName-staging-ownerUsername.runnableapp.com
 ```
+
