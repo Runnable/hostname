@@ -65,6 +65,7 @@ describe('elastic', function () {
   describe('success', function () {
     beforeEach(function (done) {
       ctx.opts = {
+        masterPod: false,
         shortHash: 'abcdef',
         instanceName: 'instanceName',
         branch: 'Branch',
@@ -72,6 +73,50 @@ describe('elastic', function () {
         userContentDomain: 'domain.com'
       };
       done();
+    });
+
+    describe('isolated: true', function() {
+      describe('isolated container (not master)', function() {
+        beforeEach(function (done) {
+          ctx.opts.isolated = 'das3h343k12hj3g4';
+          ctx.opts.instanceName = 'h32e34--instanceName';
+          done();
+        });
+        it('should create an elastic hostname', function (done) {
+          expect(
+            elastic(ctx.opts)
+          ).to.equal('instancename-staging-ownerusername.domain.com');
+          done();
+        });
+      });
+      describe('isolated non-repo container (not master)', function() {
+        beforeEach(function (done) {
+          ctx.opts.isolated = 'das3h343k12hj3g4';
+          ctx.opts.instanceName = 'h32e34--redis';
+          delete ctx.opts.branch;
+          done();
+        });
+        it('should create an elastic hostname', function (done) {
+          expect(
+            elastic(ctx.opts)
+          ).to.equal('redis-staging-ownerusername.domain.com');
+          done();
+        });
+      });
+      describe('isolation master', function() {
+        beforeEach(function (done) {
+          ctx.opts.isolated = 'das3h343k12hj3g4';
+          ctx.opts.isIsolationGroupMaster = true;
+          ctx.opts.instanceName = ctx.opts.branch +'-'+ ctx.opts.instanceName;
+          done();
+        });
+        it('should create an elastic hostname', function (done) {
+          expect(
+            elastic(ctx.opts)
+          ).to.equal('instancename-staging-ownerusername.domain.com');
+          done();
+        });
+      })
     });
 
     describe('masterPod: true', function() {
@@ -93,7 +138,6 @@ describe('elastic', function () {
 
       describe('valid chars in branch name', function() {
         beforeEach(function (done) {
-          ctx.opts.masterPod = false;
           // non-master-pod instances have branch in name
           ctx.opts.instanceName = ctx.opts.branch +'-'+ ctx.opts.instanceName;
           done();
@@ -123,7 +167,6 @@ describe('elastic', function () {
 
       describe('invalid characters in branch name', function () {
         beforeEach(function (done) {
-          ctx.opts.masterPod = false;
           ctx.opts.branch = 'branch/Face';
           var cleanBranch = ctx.opts.branch.replace('/', '-');
           // non-master-pod instances have branch in name
